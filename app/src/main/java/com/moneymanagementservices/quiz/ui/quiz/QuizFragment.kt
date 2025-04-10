@@ -1,0 +1,143 @@
+package com.moneymanagementservices.quiz.ui.quiz
+
+import android.content.Context
+import androidx.fragment.app.viewModels
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.moneymanagementservices.quiz.App
+import com.moneymanagementservices.quiz.databinding.FragmentQuizBinding
+import com.moneymanagementservices.quiz.ui.models.PresentationEntity
+import com.moneymanagementservices.quiz.ui.models.PresentationInvestmentTests
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+class QuizFragment : Fragment() {
+    private var _binding: FragmentQuizBinding? = null
+    private val binding get() = _binding!!
+    private var index = 0
+    private var theme = ""
+
+    @Inject
+    lateinit var viewModelFactory: QuizViewModelFactory
+
+    private val viewModel: QuizViewModel by viewModels {
+        viewModelFactory
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (activity?.applicationContext as App).appComponent
+            .quizComponentFactory()
+            .create()
+            .inject(this)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentQuizBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        arguments.let {
+            theme = it?.getString("theme").toString()
+        }
+
+        viewModel.load(theme)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    when {
+                        state.isLoading -> showLoading()
+
+                        state.hasError -> {
+                            showError()
+                            viewModel.errorShown()
+                        }
+
+                        else -> {
+                            showItem(state.list)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showError() {
+        Toast.makeText(
+            requireContext(),
+            "Error wile loading dataText",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun showItem(list: List<PresentationEntity>) {
+        var result = false
+        val item = list.getOrNull(index)
+
+        with(binding) {
+            binding.answer.visibility =  View.GONE
+            binding.showAnswer.visibility = View.VISIBLE
+
+            question.text = item?.question
+            optionOne.text = item?.one
+            optionTwo.text = item?.two
+            optionThree.text = item?.three
+            optionFour.text = item?.four
+
+            showAnswer.setOnClickListener {
+                binding.answer.visibility = View.VISIBLE
+                binding.showAnswer.visibility = View.GONE
+                binding.answer.text = item?.control
+            }
+
+            options.setOnCheckedChangeListener { _, button ->
+                when (button) {
+                    binding.optionOne.id -> result = item?.one == item?.control
+                    binding.optionTwo.id -> result = item?.two == item?.control
+                    binding.optionThree.id -> result = item?.three == item?.control
+                    binding.optionFour.id -> result = item?.four == item?.control
+                }
+                binding.actionAnswer.visibility = View.VISIBLE
+            }
+
+            actionAnswer.setOnClickListener {
+                index++
+                if (item != list.last() && item != null) {
+                    onItemClick(item.copy(result = result))
+                    showItem(list)
+                } else{
+                   viewModel.saveTestResult(entity = PresentationInvestmentTests(theme = theme))
+                    Toast.makeText(
+                        requireContext(),
+                        "${viewModel.state.value.question}/${viewModel.state.value.answers}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showLoading() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun onItemClick(item: PresentationEntity) {
+        viewModel.countCorrectAnswers(item.result)
+    }
+}

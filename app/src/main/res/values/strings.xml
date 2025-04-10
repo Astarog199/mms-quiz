@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">quiz</string>
+    <string name="show_answer">show answer</string>
+    <string name="answer">answer</string>
+</resources>
