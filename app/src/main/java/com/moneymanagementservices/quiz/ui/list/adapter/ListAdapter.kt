@@ -1,5 +1,6 @@
 package com.moneymanagementservices.quiz.ui.list.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ class ListAdapter @Inject constructor(
     private val onClick: (PresentationInvestmentTests) -> Unit
 ): RecyclerView.Adapter<ListHolder>() {
     private var values:List<PresentationInvestmentTests> = emptyList()
+    private lateinit var context: Context
 
     fun setData(data: List<PresentationInvestmentTests>){
         this.values = data
@@ -25,7 +27,8 @@ class ListAdapter @Inject constructor(
                 parent,
                 false
             ),
-            onClick = onClick
+            onClick = onClick,
+            context = context,
         )
     }
 
@@ -33,6 +36,11 @@ class ListAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: ListHolder, position: Int) {
         val item = values.getOrNull(position)
-        holder.bind(item)
+        item?.let { holder.bind(item) }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
     }
 }

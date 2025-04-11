@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Тестирование неквалифицированных инвесторов</string>
+    <string name="show_answer">показать ответ</string>
+    <string name="answer">ответить</string>
+    <string name="description_test_second">правильных ответов из</string>
+</resources>

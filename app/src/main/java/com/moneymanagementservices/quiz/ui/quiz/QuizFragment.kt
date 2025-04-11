@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.None
+import com.google.android.material.snackbar.Snackbar
 import com.moneymanagementservices.quiz.App
 import com.moneymanagementservices.quiz.databinding.FragmentQuizBinding
 import com.moneymanagementservices.quiz.ui.models.PresentationEntity
@@ -88,10 +90,11 @@ class QuizFragment : Fragment() {
     private fun showItem(list: List<PresentationEntity>) {
         var result = false
         val item = list.getOrNull(index)
+        val NONE = -1
 
         with(binding) {
-            binding.answer.visibility =  View.GONE
-            binding.showAnswer.visibility = View.VISIBLE
+            answer.visibility = View.GONE
+            showAnswer.visibility = View.VISIBLE
 
             question.text = item?.question
             optionOne.text = item?.one
@@ -100,19 +103,39 @@ class QuizFragment : Fragment() {
             optionFour.text = item?.four
 
             showAnswer.setOnClickListener {
-                binding.answer.visibility = View.VISIBLE
-                binding.showAnswer.visibility = View.GONE
-                binding.answer.text = item?.control
+                answer.visibility = View.VISIBLE
+                showAnswer.visibility = View.GONE
+                answer.text = item?.control
             }
+
+            options.clearCheck()
 
             options.setOnCheckedChangeListener { _, button ->
                 when (button) {
-                    binding.optionOne.id -> result = item?.one == item?.control
-                    binding.optionTwo.id -> result = item?.two == item?.control
-                    binding.optionThree.id -> result = item?.three == item?.control
-                    binding.optionFour.id -> result = item?.four == item?.control
+                    binding.optionOne.id -> {
+                        result = item?.one == item?.control
+                        actionAnswer.visibility = View.VISIBLE
+                    }
+
+                    binding.optionTwo.id -> {
+                        result = item?.two == item?.control
+                        actionAnswer.visibility = View.VISIBLE
+                    }
+
+                    binding.optionThree.id -> {
+                        result = item?.three == item?.control
+                        actionAnswer.visibility = View.VISIBLE
+                    }
+
+                    binding.optionFour.id -> {
+                        result = item?.four == item?.control
+                        actionAnswer.visibility = View.VISIBLE
+                    }
+
+                    NONE -> actionAnswer.visibility = View.GONE
+
                 }
-                binding.actionAnswer.visibility = View.VISIBLE
+
             }
 
             actionAnswer.setOnClickListener {
@@ -120,13 +143,11 @@ class QuizFragment : Fragment() {
                 if (item != list.last() && item != null) {
                     onItemClick(item.copy(result = result))
                     showItem(list)
-                } else{
-                   viewModel.saveTestResult(entity = PresentationInvestmentTests(theme = theme))
-                    Toast.makeText(
-                        requireContext(),
-                        "${viewModel.state.value.question}/${viewModel.state.value.answers}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                } else {
+                    viewModel.saveTestResult(entity = PresentationInvestmentTests(theme = theme))
+                    val message =
+                        "${viewModel.state.value.question}/${viewModel.state.value.answers}"
+                    showSnackbar(message)
                 }
             }
             progressBar.visibility = View.GONE
@@ -139,5 +160,9 @@ class QuizFragment : Fragment() {
 
     private fun onItemClick(item: PresentationEntity) {
         viewModel.countCorrectAnswers(item.result)
+    }
+
+    private fun showSnackbar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }
