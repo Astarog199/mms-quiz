@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_start"
-        android:name="com.moneymanagementservices.quiz.ui.start.StartFragment"
-        android:label="start"
+        android:name="com.moneymanagementservices.quiz.ui.start.present.list.StartFragment"
+        android:label="@string/education"
         tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_start"
-            app:destination="@id/navigation_list"
+            app:destination="@id/navigation_education"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_list"
-        android:name="com.moneymanagementservices.quiz.ui.list.ListFragment"
+        android:name="com.moneymanagementservices.quiz.ui.quiz.present.list.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/fragment_list"
         >
@@ -33,9 +33,16 @@
 
     <fragment
         android:id="@+id/navigation_quiz"
-        android:name="com.moneymanagementservices.quiz.ui.quiz.QuizFragment"
+        android:name="com.moneymanagementservices.quiz.ui.quiz.present.test.QuizFragment"
         android:label="QuizFragment"
         tools:layout="@layout/fragment_quiz"
+        />
+
+    <fragment
+        android:id="@+id/navigation_education"
+        android:name="com.moneymanagementservices.quiz.ui.start.present.details.EducationFragment"
+        android:label="EducationFragment"
+        tools:layout="@layout/fragment_education"
         />
 
 </navigation>

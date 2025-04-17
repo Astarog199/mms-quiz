@@ -23,4 +23,10 @@ interface Dao {
 
     @Update
     suspend fun updateInvestmentTests(entity: InvestmentTests)
+
+    @Insert(entity = Education::class, onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveEducation(entity: List<Education>)
+
+    @Query("SELECT * FROM Education")
+    fun getEducations(): Flow<List<Education>>
 }

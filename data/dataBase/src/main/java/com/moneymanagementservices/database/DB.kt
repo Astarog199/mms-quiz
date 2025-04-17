@@ -6,7 +6,8 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [
         Question::class,
-        InvestmentTests::class
+        InvestmentTests::class,
+        Education::class
                ], version = 1
 )
 abstract class DB: RoomDatabase()  {

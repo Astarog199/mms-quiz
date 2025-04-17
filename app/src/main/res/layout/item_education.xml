@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Маржинальная торговля"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/definitions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\u00A0\u00A0\u00A0\u00A0Маржинальная торговля — это покупка активов (акций, облигаций, валют, криптовалют) с использованием заемных средств брокера. Она позволяет увеличить потенциальную прибыль за счет кредитного плеча, но также повышает риски убытков."
+        android:textColor="@color/grey5"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/first_paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\u00A0\u00A0\u00A0\u00A0Чтобы поддерживать открытую позицию, трейдер должен постоянно держать на счету определенный уровень обеспечения (минимальной маржи). Если стоимость активов снижается и обеспечение падает ниже установленного минимума, брокер может закрыть часть ваших позиций — эта ситуация называется маржин-коллом. Условия маржинальной сделки прописаны в брокерском договоре."
+        android:textColor="@color/grey5"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/two_paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="two_paragraph"
+        android:textColor="@color/grey5"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/three_paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="three_paragraph"
+        android:textColor="@color/grey5"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/four_paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="four_paragraph"
+        android:textColor="@color/grey5"
+        android:textSize="12sp"
+        android:layout_marginBottom="5dp"
+        />
+</LinearLayout>

@@ -45,6 +45,7 @@ android {
 dependencies {
     implementation(project(":data:dataBase"))
     implementation(project(":data:questions"))
+    implementation(project(":data:education"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

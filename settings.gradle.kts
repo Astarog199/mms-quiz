@@ -23,3 +23,4 @@ rootProject.name = "quiz"
 include(":app")
 include(":data:dataBase")
 include(":data:questions")
+include(":data:education")
