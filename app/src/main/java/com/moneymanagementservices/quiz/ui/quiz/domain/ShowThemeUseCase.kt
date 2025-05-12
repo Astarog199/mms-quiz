@@ -3,7 +3,6 @@ package com.moneymanagementservices.quiz.ui.quiz.domain
 import com.moneymanagementservices.questions.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ShowThemeUseCase @Inject constructor(
@@ -16,9 +15,18 @@ class ShowThemeUseCase @Inject constructor(
             repository.showTest(),
             repository.showQuestion()
         ) { test, questions ->
-            val arr = mutableSetOf<String>()
-            questions.map { list ->
-                arr.add(list.theme)
+            val arr = mutableMapOf<String, Int>()
+            var lastTheme = ""
+            questions.map {
+                val currentTheme = it.theme
+
+                if (currentTheme != lastTheme) {
+                    arr[currentTheme] = 1
+                } else {
+                    arr[currentTheme] = arr.getValue(currentTheme) + 1
+                }
+
+                lastTheme = currentTheme
             }
 
             if (test.isEmpty() || test.size < arr.size) {

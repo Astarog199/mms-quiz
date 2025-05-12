@@ -8,11 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.moneymanagementservices.quiz.App
+import com.moneymanagementservices.quiz.R
 import com.moneymanagementservices.quiz.databinding.FragmentQuizBinding
 import com.moneymanagementservices.quiz.ui.quiz.present.models.PresentationEntity
 import com.moneymanagementservices.quiz.ui.quiz.present.models.PresentationInvestmentTests
@@ -132,21 +135,25 @@ class QuizFragment : Fragment() {
                     }
 
                     NONE -> actionAnswer.visibility = View.GONE
-
                 }
-
             }
 
             actionAnswer.setOnClickListener {
                 index++
-                if (item != list.last() && item != null) {
-                    onItemClick(item.copy(result = result))
-                    showItem(list)
-                } else {
-                    viewModel.saveTestResult(entity = PresentationInvestmentTests(theme = theme))
-                    val message =
-                        "${viewModel.state.value.question}/${viewModel.state.value.answers}"
-                    showSnackbar(message)
+                item?.let {
+                    onItemClick(it.copy(result = result))
+                    showSnackbar(result.toString())
+                }
+
+                when{
+                    item != list.last() -> showItem(list)
+
+                    else -> {
+                        viewModel.saveTestResult(entity = PresentationInvestmentTests(theme = theme))
+                        navigate()
+                        val message = "${viewModel.state.value.question}/${viewModel.state.value.answers}"
+                        showSnackbar(message)
+                    }
                 }
             }
             progressBar.visibility = View.GONE
@@ -163,5 +170,17 @@ class QuizFragment : Fragment() {
 
     private fun showSnackbar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun navigate() {
+        requireActivity().findNavController(R.id.fragment_container)
+            .navigate(
+                resId = R.id.actrion_finish,
+                args = bundleOf(
+                    "displayResults" to true,
+                    "question" to viewModel.state.value.question,
+                    "answers" to viewModel.state.value.answers
+                    )
+            )
     }
 }

@@ -19,13 +19,10 @@ class ListHolder(
 
 
         with(binding) {
-            if (item.result) image.load(R.drawable.best_results)
-            else image.load(R.drawable.exam)
+            if (item.result) image.load(R.drawable.pass) else image.load(R.drawable.test)
             description.text = "${item.answers} $descriptionText  ${item.question}"
             title.text = item.theme
-            root.setOnClickListener {
-                onClick(item)
-            }
+            root.setOnClickListener { onClick(item) }
         }
     }
 }

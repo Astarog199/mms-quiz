@@ -6,5 +6,6 @@ data class ListScreenState (
     val isLoading: Boolean = false,
     val filter: Boolean = false,
     val list: List<PresentationInvestmentTests> = mutableListOf(),
+    val displayTestResults: Boolean = false,
     val hasError: Boolean = false,
 )

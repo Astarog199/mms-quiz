@@ -4,10 +4,10 @@ import com.moneymanagementservices.database.InvestmentTests
 import javax.inject.Inject
 
 class Factory @Inject constructor() {
-    fun toInvestmentTests(theme: String): InvestmentTests {
+    fun toInvestmentTests(theme: Map.Entry<String, Int>): InvestmentTests {
         return InvestmentTests(
-            theme = theme,
-            question = 0,
+            theme = theme.key,
+            question = theme.value,
             answers = 0,
             result = false
         )

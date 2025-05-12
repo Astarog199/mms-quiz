@@ -25,4 +25,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/display_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="40dp"
+        android:padding="15dp"
+        android:background="@color/grey1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_result"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/exam"
+            />
+
+        <TextView
+            android:id="@+id/title_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Результаты тестирования"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 правильных ответов из 11"
+            android:textColor="@color/grey3"
+            android:textSize="11sp"
+            android:layout_margin="10dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Продолжить"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:backgroundTint="@color/blue"
+
+            />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

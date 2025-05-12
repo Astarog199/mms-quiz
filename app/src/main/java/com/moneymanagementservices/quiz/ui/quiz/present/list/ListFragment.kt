@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.moneymanagementservices.quiz.App
 import com.moneymanagementservices.quiz.R
 import com.moneymanagementservices.quiz.databinding.FragmentListBinding
@@ -27,6 +28,9 @@ class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val adapter = ListAdapter {item -> onItemClick(item)}
+    private var displayResults = false
+    private var question = 0
+    private var answers = 0
 
     private fun onItemClick(item: PresentationInvestmentTests) {
         requireActivity().findNavController(R.id.fragment_container)
@@ -62,6 +66,14 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments.let {
+            displayResults = it?.getBoolean("displayResults") == true
+            question = it?.getInt("question") ?: 0
+            answers = it?.getInt("answers") ?: 0
+        }
+
+        Snackbar.make(binding.root, displayResults.toString(), Snackbar.LENGTH_SHORT).show()
+
         viewModel.load()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = adapter
@@ -77,15 +89,15 @@ class ListFragment : Fragment() {
                             viewModel.errorShown()
                         }
 
+                        state.displayTestResults -> {binding.displayResult.visibility = View.VISIBLE}
+
                         else -> {
                             showList(state.list)
                         }
                     }
-
                 }
             }
         }
-
     }
 
     private fun showList(list: List<PresentationInvestmentTests>) {
@@ -103,6 +115,7 @@ class ListFragment : Fragment() {
     }
 
     private fun showLoading() {
+        binding.displayResult.visibility = View.GONE
         binding.recyclerView.visibility = View.GONE
         binding.progressBar.visibility = View.VISIBLE
     }
