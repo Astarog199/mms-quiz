@@ -16,13 +16,13 @@ import com.moneymanagementservices.quiz.App
 import com.moneymanagementservices.quiz.databinding.FragmentEducationBinding
 import com.moneymanagementservices.quiz.ui.start.present.details.adapter.EducationAdapter
 import com.moneymanagementservices.quiz.ui.start.present.details.models.EducationPresent
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class EducationFragment : Fragment() {
     private var _binding: FragmentEducationBinding? = null
     private val binding get() = _binding!!
+    private var title = ""
     private val adapter = EducationAdapter()
 
     @Inject
@@ -52,7 +52,11 @@ class EducationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.load()
+        arguments.let {
+            title = it?.getString("title").toString()
+        }
+
+        viewModel.load(title)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = adapter
 

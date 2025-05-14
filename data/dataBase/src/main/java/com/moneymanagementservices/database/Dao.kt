@@ -13,7 +13,7 @@ interface Dao {
     fun getQuestions(): Flow<List<Question>>
 
     @Insert(entity = Question::class, onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveQuestion(entity: List<Question>)
+    suspend fun saveQuestion(entity: List<NewQuestion>)
 
     @Query("SELECT * FROM investment_tests")
     fun getThemes(): Flow<List<InvestmentTests>>

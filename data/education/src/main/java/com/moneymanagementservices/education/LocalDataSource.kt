@@ -15,4 +15,14 @@ class LocalDataSource @Inject constructor(
     fun getEducations(): Flow<List<Education>> {
         return dao.getEducations()
     }
+
+    fun showEducationTopics(): List<String> {
+         val arr = listOf(
+            "Маржинальная торговля",
+            "Фьючерсы и опционы",
+            "Договора РЕПО",
+            "Облигации со структурным доходом",
+        )
+        return arr
+    }
 }

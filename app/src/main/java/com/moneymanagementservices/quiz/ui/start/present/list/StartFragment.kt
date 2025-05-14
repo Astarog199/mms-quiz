@@ -85,7 +85,7 @@ class StartFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
     }
 
-    private fun showList(list: List<PresentEntity>) {
+    private fun showList(list: List<String>) {
         adapter.setData(list)
         binding.recyclerView.visibility = View.VISIBLE
         binding.progressBar.visibility = View.GONE
@@ -100,11 +100,11 @@ class StartFragment : Fragment() {
     }
 
 
-    private fun onItemClick(item: PresentEntity) {
+    private fun onItemClick(item: String) {
         requireActivity().findNavController(R.id.fragment_container)
             .navigate(
                 resId = R.id.navigation_education,
-                args = bundleOf("title" to item.title)
+                args = bundleOf("title" to item)
             )
     }
 }

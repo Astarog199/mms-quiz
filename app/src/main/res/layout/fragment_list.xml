@@ -35,6 +35,7 @@
         android:layout_margin="40dp"
         android:padding="15dp"
         android:background="@color/grey1"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +54,7 @@
             android:id="@+id/title_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Результаты тестирования"
+            android:text="@string/test_passed"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
             />
@@ -61,21 +62,21 @@
             android:id="@+id/text_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10 правильных ответов из 11"
+            android:text="@string/correct_answers_out_of"
             android:textColor="@color/grey3"
             android:textSize="11sp"
             android:layout_margin="10dp"
             />
 
         <Button
+            android:id="@+id/reset_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Продолжить"
+            android:text="@string/continue_but"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:backgroundTint="@color/blue"
-
             />
 
     </LinearLayout>

@@ -8,9 +8,7 @@ import com.moneymanagementservices.quiz.databinding.ItemEducationBinding
 import com.moneymanagementservices.quiz.ui.start.present.details.models.EducationPresent
 import javax.inject.Inject
 
-class EducationAdapter @Inject constructor(
-
-) : RecyclerView.Adapter<EducationHolder>() {
+class EducationAdapter @Inject constructor() : RecyclerView.Adapter<EducationHolder>() {
     private var values:List<EducationPresent> = emptyList()
     private lateinit var context: Context
 

@@ -37,7 +37,7 @@ class ListViewModel(
         _state.update { screenState -> screenState.copy(hasError = false) }
     }
 
-    private fun changeDisplayResults(arg: Boolean) {
+    fun changeDisplayResults(arg: Boolean) {
         _state.update { it.copy(displayTestResults = arg) }
     }
 }

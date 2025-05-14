@@ -2,6 +2,7 @@ package com.moneymanagementservices.questions
 
 import com.moneymanagementservices.database.Dao
 import com.moneymanagementservices.database.InvestmentTests
+import com.moneymanagementservices.database.NewQuestion
 import com.moneymanagementservices.database.Question
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -13,7 +14,7 @@ class LocalDataSource @Inject constructor(
       return dao.getQuestions()
     }
 
-    suspend fun saveQuestion(entity: List<Question>) {
+    suspend fun saveQuestion(entity: List<NewQuestion>) {
         dao.saveQuestion(entity)
     }
 

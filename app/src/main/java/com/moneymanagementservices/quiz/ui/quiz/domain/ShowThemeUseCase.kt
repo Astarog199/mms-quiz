@@ -11,22 +11,23 @@ class ShowThemeUseCase @Inject constructor(
     private val factory: Factory
 ) {
     operator fun invoke(): Flow<List<TestDomain>> {
+
         return combine(
             repository.showTest(),
             repository.showQuestion()
         ) { test, questions ->
             val arr = mutableMapOf<String, Int>()
             var lastTheme = ""
+
             questions.map {
                 val currentTheme = it.theme
 
                 if (currentTheme != lastTheme) {
                     arr[currentTheme] = 1
+                    lastTheme = currentTheme
                 } else {
                     arr[currentTheme] = arr.getValue(currentTheme) + 1
                 }
-
-                lastTheme = currentTheme
             }
 
             if (test.isEmpty() || test.size < arr.size) {

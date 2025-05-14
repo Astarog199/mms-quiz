@@ -4,15 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.moneymanagementservices.quiz.databinding.ItemStartBinding
-import com.moneymanagementservices.quiz.ui.start.present.list.PresentEntity
 import javax.inject.Inject
 
 class StartAdapter @Inject constructor(
-    private val onClick: (PresentEntity) -> Unit
+    private val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<StartHolder>() {
-    private var values:List<PresentEntity> = emptyList()
+    private var values:List<String> = emptyList()
 
-    fun setData(data: List<PresentEntity>){
+    fun setData(data: List<String>){
         this.values = data
         notifyDataSetChanged()
     }

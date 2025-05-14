@@ -24,9 +24,17 @@ class Repository @Inject constructor(
         return localDataSource.getEducations()
     }
 
-    fun showEducations(): Flow<List<Education>> {
-        return saveEducation()
+    fun showEducationTopics(): List<String> {
+        return localDataSource.showEducationTopics()
     }
 
-
+    fun showEducations(educationTopic: String): List<Education> {
+        return  when(educationTopic){
+            "Маржинальная торговля" -> educationText.toEntity().marginTrading.map(mapper::toEducation)
+            "Фьючерсы и опционы" -> educationText.toEntity().futuresOptions.map(mapper::toEducation)
+            "Договора РЕПО" -> educationText.toEntity().REPO.map(mapper::toEducation)
+            "Облигации со структурным доходом" -> {mutableListOf()}
+            else -> mutableListOf()
+        }
+    }
 }

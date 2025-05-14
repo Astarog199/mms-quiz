@@ -5,4 +5,10 @@
     <string name="answer">ответить</string>
     <string name="description_test_second">правильных ответов из</string>
     <string name="education">обучение</string>
+    <string name="continue_but">продолжить</string>
+    <string name="test_passed">Тест пройден</string>
+    <string name="test_failed">Тест провален</string>
+    <string name="correct_answers_out_of">правильных ответов из</string>
+    <string name="testing">тестирование</string>
+
 </resources>

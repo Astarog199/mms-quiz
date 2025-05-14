@@ -1,13 +1,11 @@
 package com.moneymanagementservices.database
 
 import androidx.room.ColumnInfo
-import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "question")
-data class Question (
+data class NewQuestion (
     @PrimaryKey
-    @ColumnInfo("id") val id: Int,
+    @ColumnInfo("id") val id: Int? = null,
     @ColumnInfo("theme") val theme: String,
     @ColumnInfo("question") val question: String,
     @ColumnInfo("one") val one: String,

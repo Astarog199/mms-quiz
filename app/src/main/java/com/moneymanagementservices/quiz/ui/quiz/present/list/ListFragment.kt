@@ -78,6 +78,8 @@ class ListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = adapter
 
+        if (displayResults) viewModel.changeDisplayResults(true)
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { state ->
@@ -89,7 +91,7 @@ class ListFragment : Fragment() {
                             viewModel.errorShown()
                         }
 
-                        state.displayTestResults -> {binding.displayResult.visibility = View.VISIBLE}
+                        state.displayTestResults -> displayTestResults()
 
                         else -> {
                             showList(state.list)
@@ -98,12 +100,26 @@ class ListFragment : Fragment() {
                 }
             }
         }
+
+        binding.resetResults.setOnClickListener {
+            viewModel.changeDisplayResults(false)
+        }
+    }
+
+    private fun displayTestResults() {
+        val titleResult = if (answers > 7) getString(R.string.test_passed) else getString(R.string.test_failed)
+        binding.displayResult.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.GONE
+        binding.recyclerView.visibility = View.GONE
+        binding.titleResult.text = titleResult
+        binding.textResult.text = "$answers ${getString(R.string.correct_answers_out_of)} $question"
     }
 
     private fun showList(list: List<PresentationInvestmentTests>) {
         adapter.setData(list)
         binding.recyclerView.visibility = View.VISIBLE
         binding.progressBar.visibility = View.GONE
+        binding.displayResult.visibility = View.GONE
     }
 
     private fun showError() {
@@ -115,7 +131,6 @@ class ListFragment : Fragment() {
     }
 
     private fun showLoading() {
-        binding.displayResult.visibility = View.GONE
         binding.recyclerView.visibility = View.GONE
         binding.progressBar.visibility = View.VISIBLE
     }

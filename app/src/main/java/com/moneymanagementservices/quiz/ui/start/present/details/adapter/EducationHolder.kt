@@ -27,8 +27,10 @@ class EducationHolder(
                 threeParagraph.text = item.threeParagraph
                 fourParagraph.text = item.fourParagraph
 
-                head.visibility = if (item.head.isBlank()) View.GONE else View.VISIBLE
-                definitions.visibility = if (item.head.isBlank()) View.GONE else View.VISIBLE
+                head.visibility =
+                    if (item.head.isBlank()) View.GONE else View.VISIBLE
+                definitions.visibility =
+                    if (item.definitions.isBlank()) View.GONE else View.VISIBLE
                 firstParagraph.visibility =
                     if (item.firstParagraph.isBlank()) View.GONE else View.VISIBLE
                 twoParagraph.visibility =

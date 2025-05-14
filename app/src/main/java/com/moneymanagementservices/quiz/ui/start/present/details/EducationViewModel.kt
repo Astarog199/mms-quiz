@@ -22,8 +22,8 @@ class EducationViewModel(
     private val _state = MutableStateFlow(ScreenState())
     val state: StateFlow<ScreenState> = _state.asStateFlow()
 
-    fun load() {
-        useCase()
+    fun load(arg: String) {
+        useCase(arg)
             .map { list -> list.map(mapper::toEducationPresent) }
             .onStart { _state.update { it.copy(isLoading = true) }  }
             .onEach { list ->
