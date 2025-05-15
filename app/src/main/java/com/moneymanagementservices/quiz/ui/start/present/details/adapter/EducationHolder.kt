@@ -22,10 +22,10 @@ class EducationHolder(
             with(binding) {
                 head.text = item.head
                 definitions.text = formatDefinitions(item.definitions)
-                firstParagraph.text = item.firstParagraph
-                twoParagraph.text = item.twoParagraph
-                threeParagraph.text = item.threeParagraph
-                fourParagraph.text = item.fourParagraph
+                firstParagraph.text = formatParagraph(item.firstParagraph)
+                twoParagraph.text = formatParagraph(item.twoParagraph)
+                threeParagraph.text = formatParagraph(item.threeParagraph)
+                fourParagraph.text = formatParagraph(item.fourParagraph)
 
                 head.visibility =
                     if (item.head.isBlank()) View.GONE else View.VISIBLE
@@ -50,14 +50,31 @@ class EducationHolder(
         string.forEachIndexed { index, char ->
             when (char) {
                 '.' -> start = index + 1
-                '—' -> {
-                    string.setSpan(StyleSpan(Typeface.BOLD), start, index, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    string.setSpan(StyleSpan(Typeface.ITALIC), start, index, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    string.setSpan(ForegroundColorSpan(Color.WHITE), start, index, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                }
+                '—' -> formatText(string, start, index)
             }
         }
 
         return string
+    }
+
+    private fun formatParagraph(string: String): SpannableString {
+        val instructions = checkText(string)
+        val text = SpannableString(string)
+        return if (instructions.first) formatText(text =  text, start = 0, end = instructions.second) else text
+    }
+
+    private fun formatText(text: SpannableString, start: Int, end:Int): SpannableString {
+        text.setSpan(StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text.setSpan(StyleSpan(Typeface.ITALIC), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text.setSpan(ForegroundColorSpan(Color.WHITE), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        return text
+    }
+
+    private fun checkText(text: String): Pair<Boolean, Int> {
+        val array = listOf("Пример:", "Кратко:")
+        for (i in array) {
+            if (text.startsWith(i)) return Pair(true, i.length)
+        }
+        return Pair(false, 0)
     }
 }
