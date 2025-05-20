@@ -71,7 +71,7 @@ class EducationHolder(
     }
 
     private fun checkText(text: String): Pair<Boolean, Int> {
-        val array = listOf("Пример:", "Кратко:")
+        val array = listOf("Пример:", "Кратко:", "Важно!", "Купонные выплаты", "Выплата номинала")
         for (i in array) {
             if (text.startsWith(i)) return Pair(true, i.length)
         }

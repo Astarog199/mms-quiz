@@ -9,4 +9,5 @@
     <string name="test_failed">Test failed</string>
     <string name="correct_answers_out_of">correct answers out of</string>
     <string name="testing">testing</string>
+    <string name="instruction">Select one of the answer options or click to see the correct answer.</string>
 </resources>

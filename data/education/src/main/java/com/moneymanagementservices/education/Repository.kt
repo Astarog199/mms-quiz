@@ -33,7 +33,11 @@ class Repository @Inject constructor(
             "Маржинальная торговля" -> educationText.toEntity().marginTrading.map(mapper::toEducation)
             "Фьючерсы и опционы" -> educationText.toEntity().futuresOptions.map(mapper::toEducation)
             "Договора РЕПО" -> educationText.toEntity().REPO.map(mapper::toEducation)
-            "Облигации со структурным доходом" -> {mutableListOf()}
+            "Облигации" -> educationText.toEntity().bonds.map(mapper::toEducation)
+            "Высокодоходные облигации с низким рейтингом (ВДО)" -> educationText.toEntity().bondsVDO.map(mapper::toEducation)
+            "Структурные облигации" -> educationText.toEntity().structuredBonds.map(mapper::toEducation)
+            "Облигации со структурным доходом" -> educationText.toEntity().structuredIncomeBonds.map(mapper::toEducation)
+            "Акции" -> educationText.toEntity().stock.map(mapper::toEducation)
             else -> mutableListOf()
         }
     }

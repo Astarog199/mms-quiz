@@ -10,5 +10,6 @@
     <string name="test_failed">Тест провален</string>
     <string name="correct_answers_out_of">правильных ответов из</string>
     <string name="testing">тестирование</string>
+    <string name="instruction">Выберите один из вариантов ответов или нажмите чтобы увидеть правильный ответ.</string>
 
 </resources>

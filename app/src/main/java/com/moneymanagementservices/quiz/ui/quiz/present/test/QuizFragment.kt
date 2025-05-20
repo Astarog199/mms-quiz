@@ -1,8 +1,12 @@
 package com.moneymanagementservices.quiz.ui.quiz.present.test
 
 import android.content.Context
+import android.graphics.Color
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -91,12 +95,14 @@ class QuizFragment : Fragment() {
 
     private fun showItem(list: List<PresentationEntity>) {
         var result = false
+        val textForInstruction = getString(R.string.instruction)
         val item = list.getOrNull(index)
         val NONE = -1
 
         with(binding) {
             answer.visibility = View.GONE
-            showAnswer.visibility = View.VISIBLE
+            instruction.visibility = View.VISIBLE
+            instruction.text = formatParagraph(textForInstruction)
 
             question.text = item?.question
             optionOne.text = item?.one
@@ -104,10 +110,10 @@ class QuizFragment : Fragment() {
             optionThree.text = item?.three
             optionFour.text = item?.four
 
-            showAnswer.setOnClickListener {
+            instruction.setOnClickListener {
                 answer.visibility = View.VISIBLE
-                showAnswer.visibility = View.GONE
-                answer.text = item?.control
+                instruction.visibility = View.GONE
+                answer.text = "Ответ: ${item?.control}"
             }
 
             options.clearCheck()
@@ -158,6 +164,17 @@ class QuizFragment : Fragment() {
             }
             progressBar.visibility = View.GONE
         }
+    }
+
+    private fun formatParagraph(string: String): SpannableString {
+        val text = SpannableString(string)
+        val word = "нажмите"
+        val start = text.indexOf("нажмите")
+        val end = word.length + start
+
+        if (start != -1) text.setSpan(ForegroundColorSpan(resources.getColor(R.color.blue)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        return text
     }
 
     private fun showLoading() {
