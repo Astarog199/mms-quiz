@@ -38,6 +38,7 @@ class Repository @Inject constructor(
             "Структурные облигации" -> educationText.toEntity().structuredBonds.map(mapper::toEducation)
             "Облигации со структурным доходом" -> educationText.toEntity().structuredIncomeBonds.map(mapper::toEducation)
             "Акции" -> educationText.toEntity().stock.map(mapper::toEducation)
+            "Иностранные акции" -> educationText.toEntity().foreignStock.map(mapper::toEducation)
             else -> mutableListOf()
         }
     }

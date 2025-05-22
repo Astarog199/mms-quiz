@@ -10,5 +10,6 @@ data class EntityList (
     @SerializedName("bonds_VDO") val bondsVDO: List<Entity>,
     @SerializedName("structured_bonds") val structuredBonds: List<Entity>,
     @SerializedName("structured_income_bonds") val structuredIncomeBonds: List<Entity>,
-    @SerializedName("stocks_market") val stock: List<Entity>
+    @SerializedName("stocks_market") val stock: List<Entity>,
+    @SerializedName("foreign_stock") val foreignStock: List<Entity>
 )
