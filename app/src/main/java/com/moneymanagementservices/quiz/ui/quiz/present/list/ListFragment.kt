@@ -72,8 +72,6 @@ class ListFragment : Fragment() {
             answers = it?.getInt("answers") ?: 0
         }
 
-        Snackbar.make(binding.root, displayResults.toString(), Snackbar.LENGTH_SHORT).show()
-
         viewModel.load()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = adapter
@@ -108,11 +106,12 @@ class ListFragment : Fragment() {
 
     private fun displayTestResults() {
         val titleResult = if (answers > 7) getString(R.string.test_passed) else getString(R.string.test_failed)
+        val textResult = context?.resources?.getString(R.string.correct_answers_out_of, answers, question)
         binding.displayResult.visibility = View.VISIBLE
         binding.progressBar.visibility = View.GONE
         binding.recyclerView.visibility = View.GONE
         binding.titleResult.text = titleResult
-        binding.textResult.text = "$answers ${getString(R.string.correct_answers_out_of)} $question"
+        binding.textResult.text = textResult
     }
 
     private fun showList(list: List<PresentationInvestmentTests>) {

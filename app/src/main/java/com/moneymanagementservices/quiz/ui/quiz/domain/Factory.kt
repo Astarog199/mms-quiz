@@ -9,7 +9,7 @@ class Factory @Inject constructor() {
             theme = theme.key,
             question = theme.value,
             answers = 0,
-            result = false
+            result = null
         )
     }
 }

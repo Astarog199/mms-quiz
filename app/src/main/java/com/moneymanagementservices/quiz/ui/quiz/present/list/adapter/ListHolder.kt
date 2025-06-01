@@ -15,12 +15,15 @@ class ListHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: PresentationInvestmentTests) {
-    val descriptionText = ContextCompat.getString(context, R.string.description_test_second)
-
 
         with(binding) {
-            if (item.result) image.load(R.drawable.pass) else image.load(R.drawable.test)
-            description.text = "${item.answers} $descriptionText  ${item.question}"
+            when(item.result) {
+                true -> image.load(R.drawable.exam_passed)
+                false -> image.load(R.drawable.exam_failed)
+                else -> image.load(R.drawable.before_exam)
+            }
+            val descriptionText = context.resources.getString(R.string.description_test_second, "${item.answers}", "${item.question}")
+            description.text = descriptionText
             title.text = item.theme
             root.setOnClickListener { onClick(item) }
         }

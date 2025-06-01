@@ -4,5 +4,5 @@ data class PresentationInvestmentTests (
     val theme: String = "",
     val question: Int = 0,
     val answers: Int = 0,
-    val result: Boolean = false
+    val result: Boolean? = null
 )

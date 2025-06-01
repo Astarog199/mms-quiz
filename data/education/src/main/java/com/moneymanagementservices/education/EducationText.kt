@@ -401,58 +401,6 @@ class EducationText @Inject constructor() {
                         "three_paragraph": "Исключения иностранного ETF из биржевых торгов инвестор останется с активом, который больше не торгуется на российской бирже.",
                         "four_paragraph": "Риск банкротства или управляющая компании может ликвидировать фонд, который не пользуется популярностью у инвесторов."
                      }
-                ],
-            "foreign_bonds": [
-                    {
-                        "head": "Облигации иностранных эмитентов",
-                        "definitions": "",
-                        "first_paragraph": "",
-                        "two_paragraph": "",
-                        "three_paragraph": "",
-                        "four_paragraph": ""
-                    },
-                     {
-                        "head": "",
-                        "definitions": "",
-                        "first_paragraph": "",
-                        "two_paragraph": "",
-                        "three_paragraph": "",
-                        "four_paragraph": ""
-                     },
-                     {
-                        "head": "",
-                        "definitions": "",
-                        "first_paragraph": "",
-                        "two_paragraph": "",
-                        "three_paragraph": "",
-                        "four_paragraph": ""
-                     }
-                ],
-            "bonds_governed_foreign_law": [
-                    {
-                        "head": "Облигации российских эмитентов выпущенные и регулируемые по праву иностранного государства",
-                        "definitions": "",
-                        "first_paragraph": "",
-                        "two_paragraph": "",
-                        "three_paragraph": "",
-                        "four_paragraph": ""
-                    },
-                     {
-                        "head": "",
-                        "definitions": "",
-                        "first_paragraph": "",
-                        "two_paragraph": "",
-                        "three_paragraph": "",
-                        "four_paragraph": ""
-                     },
-                     {
-                        "head": "",
-                        "definitions": "",
-                        "first_paragraph": "",
-                        "two_paragraph": "",
-                        "three_paragraph": "",
-                        "four_paragraph": ""
-                     }
                 ]
             }      
     """.trimIndent()

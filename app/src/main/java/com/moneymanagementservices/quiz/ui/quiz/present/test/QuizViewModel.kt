@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.moneymanagementservices.quiz.ui.quiz.domain.ShowQuestionsUseCase
 import com.moneymanagementservices.quiz.ui.quiz.domain.UpdateUseCase
 import com.moneymanagementservices.quiz.ui.quiz.present.list.PresentationMapper
+import com.moneymanagementservices.quiz.ui.quiz.present.models.PresentationEntity
 import com.moneymanagementservices.quiz.ui.quiz.present.models.PresentationInvestmentTests
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,8 +30,11 @@ class QuizViewModel(
             .map { it.filter { it.theme == theme }.map(mapper::toPresentationEntity)}
             .onStart{ _state.update { list -> list.copy(isLoading = true) } }
             .onEach {  list ->
+                val set = mutableSetOf<PresentationEntity>()
+                    set.addAll(list)
+
                 _state.update { screenState ->
-                    screenState.copy(isLoading = false, list = list, question = list.size)
+                    screenState.copy(isLoading = false, list = set, question = set.size)
                 }
             }
             .catch { _state.update { it.copy(hasError = true) } }

@@ -28,8 +28,6 @@ class Repository @Inject constructor(
             "Акции не включённые в котировальные списки" -> educationText.toEntity().sharesNotIncludedQuotationLists.map(mapper::toEducation)
             "Закрытые паевые инвестиционные фонды"  -> educationText.toEntity().zpif.map(mapper::toEducation)
             "Паевые инвестиционные фонды" -> educationText.toEntity().ETFthemeFirst.map(mapper::toEducation)
-            "Облигации российских эмитентов выпущенные и регулируемые по праву иностранного государства" -> mutableListOf()
-            "Облигации иностранных эмитентов" -> mutableListOf()
             else -> mutableListOf()
         }
     }

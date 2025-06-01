@@ -23,8 +23,8 @@ class PresentationMapper @Inject constructor() {
     fun toInvestmentTests(entity: TestDomain): PresentationInvestmentTests {
         return PresentationInvestmentTests(
             theme = entity.theme,
-            question = entity.question,
-            answers = entity.answers,
+            question = entity.question?:0,
+            answers = entity.answers?:0,
             result = entity.result
         )
     }

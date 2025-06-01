@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class InvestmentTests (
     @PrimaryKey
     @ColumnInfo("theme") val theme: String,
-    @ColumnInfo("quantity_question") val question: Int,
-    @ColumnInfo("quantity_answers") val answers: Int,
-    @ColumnInfo("result") val result: Boolean,
+    @ColumnInfo("quantity_question") val question: Int? = null,
+    @ColumnInfo("quantity_answers") val answers: Int? = null,
+    @ColumnInfo("result") val result: Boolean? = null,
 )

@@ -2,12 +2,12 @@
     <string name="app_name">quiz</string>
     <string name="show_answer">show answer</string>
     <string name="answer">answer</string>
-    <string name="description_test_second">correct answers from</string>
+    <string name="description_test_second">%1$s correct answers from %2$s</string>
     <string name="education">education</string>
     <string name="continue_but">continue</string>
     <string name="test_passed">Test passed</string>
     <string name="test_failed">Test failed</string>
-    <string name="correct_answers_out_of">correct answers out of</string>
+    <string name="correct_answers_out_of">%1$d correct answers out of %2$d</string>
     <string name="testing">testing</string>
     <string name="instruction">Select one of the answer options or click to see the correct answer.</string>
 </resources>

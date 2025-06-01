@@ -77,7 +77,7 @@ class QuizFragment : Fragment() {
                         }
 
                         else -> {
-                            showItem(state.list)
+                            showItem(state.list.toList())
                         }
                     }
                 }
@@ -157,8 +157,6 @@ class QuizFragment : Fragment() {
                     else -> {
                         viewModel.saveTestResult(entity = PresentationInvestmentTests(theme = theme))
                         navigate()
-                        val message = "${viewModel.state.value.question}/${viewModel.state.value.answers}"
-                        showSnackbar(message)
                     }
                 }
             }
