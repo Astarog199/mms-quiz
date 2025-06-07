@@ -1,12 +1,12 @@
 package com.moneymanagementservices.quiz.ui.quiz.domain
 
 import com.moneymanagementservices.database.InvestmentTests
-import com.moneymanagementservices.database.Question
+import com.moneymanagementservices.questions.models.QuestionEntity
 import javax.inject.Inject
 
 class DomainMapper @Inject constructor() {
 
-    fun toDomainQuestion(entity: Question): DomainEntity {
+    fun toDomainQuestion(entity: QuestionEntity): DomainEntity {
         return DomainEntity(
             theme = entity.theme,
             question = entity.question,

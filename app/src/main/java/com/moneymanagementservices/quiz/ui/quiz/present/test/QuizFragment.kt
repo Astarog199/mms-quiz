@@ -1,18 +1,17 @@
 package com.moneymanagementservices.quiz.ui.quiz.present.test
 
 import android.content.Context
-import android.graphics.Color
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -62,6 +61,7 @@ class QuizFragment : Fragment() {
         arguments.let {
             theme = it?.getString("theme").toString()
         }
+        context?.resources?.getString(R.string.label, theme)
 
         viewModel.load(theme)
 
@@ -98,11 +98,13 @@ class QuizFragment : Fragment() {
         val textForInstruction = getString(R.string.instruction)
         val item = list.getOrNull(index)
         val NONE = -1
+        val quantityQuest = viewModel.getQuantityQuestion()
 
         with(binding) {
             answer.visibility = View.GONE
             instruction.visibility = View.VISIBLE
             instruction.text = formatParagraph(textForInstruction)
+            progressText.text = "${index+1}/$quantityQuest"
 
             question.text = item?.question
             optionOne.text = item?.one
@@ -149,6 +151,7 @@ class QuizFragment : Fragment() {
                 item?.let {
                     onItemClick(it.copy(result = result))
                     showSnackbar(result.toString())
+                    setProgressValue()
                 }
 
                 when{
@@ -162,6 +165,12 @@ class QuizFragment : Fragment() {
             }
             progressBar.visibility = View.GONE
         }
+    }
+
+    private fun setProgressValue() {
+        val progressBar = binding.progressBarForTest
+        progressBar.setMax(viewModel.getQuantityQuestion())
+        progressBar.progress = index
     }
 
     private fun formatParagraph(string: String): SpannableString {

@@ -11,5 +11,6 @@
     <string name="correct_answers_out_of">%1$d правильных ответов из %2$d</string>
     <string name="testing">тестирование</string>
     <string name="instruction">Выберите один из вариантов ответов или нажмите чтобы увидеть правильный ответ.</string>
+    <string name="label">%1$s</string>
 
 </resources>

@@ -20,6 +20,6 @@ class App: Application() {
             applicationContext,
             DB::class.java,
             "db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }

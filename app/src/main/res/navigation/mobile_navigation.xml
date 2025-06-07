@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/navigation_list"
         android:name="com.moneymanagementservices.quiz.ui.quiz.present.list.ListFragment"
-        android:label="ListFragment"
+        android:label="@string/testing"
         tools:layout="@layout/fragment_list"
         >
         <action
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/navigation_quiz"
         android:name="com.moneymanagementservices.quiz.ui.quiz.present.test.QuizFragment"
-        android:label="QuizFragment"
+        android:label=""
         tools:layout="@layout/fragment_quiz"
         >
         <action

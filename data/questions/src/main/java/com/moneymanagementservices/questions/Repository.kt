@@ -2,9 +2,11 @@ package com.moneymanagementservices.questions
 
 import com.moneymanagementservices.database.InvestmentTests
 import com.moneymanagementservices.database.Question
+import com.moneymanagementservices.questions.models.QuestionEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,15 +20,16 @@ class Repository @Inject constructor(
 
     private fun saveQuestionsList(): Flow<List<Question>> {
         scope.launch {
-            val entityList = questionsList.toEntity().entityList.map(mapper::toQuestion)
+            val entityList = questionsList.toEntity().entityList.map(mapper::toNewQuestion)
             localDataSource.saveQuestion(entityList)
         }
 
         return localDataSource.getQuestions()
     }
 
-    fun showQuestion(): Flow<List<Question>> {
-        return saveQuestionsList()
+    fun showQuestion(): Flow<List<QuestionEntity>> {
+        val entityList = questionsList.toEntity().entityList.map(mapper::toQuestion)
+        return flowOf(entityList)
     }
 
     fun saveTheme(entity: InvestmentTests) {

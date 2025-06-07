@@ -60,4 +60,8 @@ class QuizViewModel(
 
         updateUseCase(mapper.toTestDomain(updateEntity))
     }
+
+    fun getQuantityQuestion(): Int {
+        return _state.value.question
+    }
 }
