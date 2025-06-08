@@ -1,6 +1,7 @@
 package com.moneymanagementservices.quiz.ui.quiz.present.list.adapter
 
 import android.content.Context
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.moneymanagementservices.quiz.databinding.ItemListBinding
@@ -23,7 +24,11 @@ class ListHolder(
                 else -> image.load(R.drawable.before_exam)
             }
             val descriptionText = context.resources.getString(R.string.description_test_second, "${item.answers}", "${item.question}")
-            description.text = descriptionText
+            if (item.result != null) {
+                description.text = descriptionText
+                binding.description.visibility = View.VISIBLE
+            } else binding.description.visibility = View.GONE
+
             title.text = item.theme
             root.setOnClickListener { onClick(item) }
         }
