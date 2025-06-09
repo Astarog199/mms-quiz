@@ -61,7 +61,6 @@ class QuizFragment : Fragment() {
         arguments.let {
             theme = it?.getString("theme").toString()
         }
-        context?.resources?.getString(R.string.label, theme)
 
         viewModel.load(theme)
 
@@ -150,7 +149,7 @@ class QuizFragment : Fragment() {
                 index++
                 item?.let {
                     onItemClick(it.copy(result = result))
-                    showSnackbar(result.toString())
+                    if (!result) showSnackbar(getString(R.string.false_answer))
                     setProgressValue()
                 }
 

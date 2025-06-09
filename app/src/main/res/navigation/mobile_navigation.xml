@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/navigation_education"
         android:name="com.moneymanagementservices.quiz.ui.start.present.details.EducationFragment"
-        android:label="EducationFragment"
+        android:label=""
         tools:layout="@layout/fragment_education"
         />
 
