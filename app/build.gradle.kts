@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.kapt)
     alias(libs.plugins.kotlinxSerialization)
     id("org.jetbrains.kotlin.plugin.parcelize")
-
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -93,4 +94,8 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
     implementation ("androidx.legacy:legacy-support-v4:1.0.0")
 
+    //FireBase
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-crashlytics")
 }

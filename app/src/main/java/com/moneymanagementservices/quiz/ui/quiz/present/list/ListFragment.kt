@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.moneymanagementservices.quiz.App
 import com.moneymanagementservices.quiz.R
 import com.moneymanagementservices.quiz.databinding.FragmentListBinding

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "457157592375",
+    "project_id": "mms-qyiz",
+    "storage_bucket": "mms-qyiz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457157592375:android:f39e71ae7f152b386286b2",
+        "android_client_info": {
+          "package_name": "com.moneymanagementservices.quiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcj65lhMCwi1fdaaQlEbcaLDRtV6jEEOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
