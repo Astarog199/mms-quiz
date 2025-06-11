@@ -99,4 +99,9 @@ class EducationFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

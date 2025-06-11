@@ -107,4 +107,9 @@ class StartFragment : Fragment() {
                 args = bundleOf("title" to item)
             )
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

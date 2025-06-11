@@ -132,4 +132,9 @@ class ListFragment : Fragment() {
         binding.recyclerView.visibility = View.GONE
         binding.progressBar.visibility = View.VISIBLE
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

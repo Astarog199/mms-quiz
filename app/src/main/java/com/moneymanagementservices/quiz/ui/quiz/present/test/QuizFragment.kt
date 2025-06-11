@@ -103,7 +103,7 @@ class QuizFragment : Fragment() {
             answer.visibility = View.GONE
             instruction.visibility = View.VISIBLE
             instruction.text = formatParagraph(textForInstruction)
-            progressText.text = "${index+1}/$quantityQuest"
+            progressText.text = "${index + 1}/$quantityQuest"
 
             question.text = item?.question
             optionOne.text = item?.one
@@ -153,7 +153,7 @@ class QuizFragment : Fragment() {
                     setProgressValue()
                 }
 
-                when{
+                when {
                     item != list.last() -> showItem(list)
 
                     else -> {
@@ -178,7 +178,12 @@ class QuizFragment : Fragment() {
         val start = text.indexOf("нажмите")
         val end = word.length + start
 
-        if (start != -1) text.setSpan(ForegroundColorSpan(resources.getColor(R.color.blue)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        if (start != -1) text.setSpan(
+            ForegroundColorSpan(resources.getColor(R.color.blue)),
+            start,
+            end,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
         return text
     }
@@ -203,7 +208,12 @@ class QuizFragment : Fragment() {
                     "displayResults" to true,
                     "question" to viewModel.state.value.question,
                     "answers" to viewModel.state.value.answers
-                    )
+                )
             )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
